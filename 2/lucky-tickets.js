@@ -1,4 +1,4 @@
-const runTests = require('./test');
+const runTests = require('./test-framework');
 
 let cache = {};
 
