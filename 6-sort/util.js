@@ -20,17 +20,14 @@ export function measureFn(fn, ...args) {
   return (endTime - startTime);
 }
 
-export function compTable(fn, description) {
-  const ns = [100, 10000, 100000, 1000000];
-  const times = ns.map(n => ({N: n, time: measureFn(fn, getRandomArray(n))}));
-
+export function compTable(fn, description, max = 1000000) {
+  const ns = [100, 10000, 100000, 1000000].filter(e => e <= max);
   console.log(description);
-  console.table(times);
+  ns.forEach(n => {
+    const t = {N: n, time: measureFn(fn, getRandomArray(n))};
+    console.table(t);
+  });
+
+
 }
 
-// module.exports = {
-//   getRandomInt,
-//   getRandomArray,
-//   measureFn,
-//   compTable
-// };
