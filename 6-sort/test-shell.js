@@ -28,8 +28,48 @@ const compareArrays = (a1, a2) => {
 }
 
 runTests({
-  description: "Testing shell sort",
+  description: "Testing shell sort: random",
   dir: path.resolve('../sort-tests/sorting-tests/0.random'),
+  mapInput,
+  mapOutput,
+  testFn: ([n, arr], rarr) => {
+    shellSortKnuth(arr)
+    console.log(n);
+    return [compareArrays(arr, rarr), n];
+  },
+  showValues: false,
+  filterTest: e => +e.split('.')[1] <= 7
+});
+
+runTests({
+  description: "Testing shell sort: digits",
+  dir: path.resolve('../sort-tests/sorting-tests/1.digits'),
+  mapInput,
+  mapOutput,
+  testFn: ([n, arr], rarr) => {
+    shellSortKnuth(arr)
+    console.log(n);
+    return [compareArrays(arr, rarr), n];
+  },
+  showValues: false,
+  filterTest: e => +e.split('.')[1] <= 7
+});
+runTests({
+  description: "Testing shell sort: sorted",
+  dir: path.resolve('../sort-tests/sorting-tests/2.sorted'),
+  mapInput,
+  mapOutput,
+  testFn: ([n, arr], rarr) => {
+    shellSortKnuth(arr)
+    console.log(n);
+    return [compareArrays(arr, rarr), n];
+  },
+  showValues: false,
+  filterTest: e => +e.split('.')[1] <= 7
+});
+runTests({
+  description: "Testing shell sort: reversed",
+  dir: path.resolve('../sort-tests/sorting-tests/3.revers'),
   mapInput,
   mapOutput,
   testFn: ([n, arr], rarr) => {

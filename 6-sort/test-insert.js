@@ -23,7 +23,7 @@ const compareArrays = (a1, a2) => {
 }
 
 runTests({
-  description: "Testing insertion sort",
+  description: "Testing insertion sort: random",
   dir: path.resolve('../sort-tests/sorting-tests/0.random'),
   mapInput,
   mapOutput,
@@ -36,4 +36,42 @@ runTests({
   filterTest: e => +e.split('.')[1] <= 5
 });
 
-
+runTests({
+  description: "Testing insertion sort: digits",
+  dir: path.resolve('../sort-tests/sorting-tests/1.digits'),
+  mapInput,
+  mapOutput,
+  testFn: ([n, arr], rarr) => {
+    insertionSortShift(arr)
+    console.log(n);
+    return [compareArrays(arr, rarr), n];
+  },
+  showValues: false,
+  filterTest: e => +e.split('.')[1] <= 5
+});
+runTests({
+  description: "Testing insertion sort: sorted",
+  dir: path.resolve('../sort-tests/sorting-tests/2.sorted'),
+  mapInput,
+  mapOutput,
+  testFn: ([n, arr], rarr) => {
+    insertionSortShift(arr)
+    console.log(n);
+    return [compareArrays(arr, rarr), n];
+  },
+  showValues: false,
+  filterTest: e => +e.split('.')[1] <= 5
+});
+runTests({
+  description: "Testing insertion sort: reversed",
+  dir: path.resolve('../sort-tests/sorting-tests/3.revers'),
+  mapInput,
+  mapOutput,
+  testFn: ([n, arr], rarr) => {
+    insertionSortShift(arr)
+    console.log(n);
+    return [compareArrays(arr, rarr), n];
+  },
+  showValues: false,
+  filterTest: e => +e.split('.')[1] <= 5
+});
