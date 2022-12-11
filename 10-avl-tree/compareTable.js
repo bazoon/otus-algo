@@ -14,7 +14,6 @@ function testInsert(n) {
   const runRemove = function (tree) {
     for (let i = 0; i < n / 10; i++) {
       tree.remove(i);
-      console.log(i)
     }
   }
 
