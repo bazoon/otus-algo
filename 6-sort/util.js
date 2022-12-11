@@ -4,14 +4,24 @@ export function getRandomInt(min = 0, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export const getRandomArray = n => {
+export const getRandomArray = (n, m) => {
   let a = [];
 
   for (let i = 0; i < n; i++) {
-    a.push(getRandomInt(0, n));
+    a.push(getRandomInt(0, m || n));
   }
   return a;
 }
+
+export const getRandomArrayRange = (n, from, to) => {
+  let a = [];
+
+  for (let i = 0; i < n; i++) {
+    a.push(getRandomInt(from, to));
+  }
+  return a;
+}
+
 
 const getRandomDigitsArray = n => {
   let a = [];
@@ -106,9 +116,21 @@ export function compTable(fn, description, max = 1000000) {
   //   const t = {N: n, time: measureFn(fn, getAlmostSortedArray(n))};
   //   console.table(t);
   // });
-
-
 }
 
+export function compTable999(fns, fnsDescriptions, max = 1000000) {
+  const ns = [100, 10000, 100000, 1000000].filter(e => e <= max);
+  const t = {};
+
+  ns.forEach(n => {
+    fnsDescriptions.forEach((s, i) => {
+      const fn = fns[i];
+      t[s] = t[s] || {};
+      t[s][n] = measureFn(fn, getRandomArrayRange(n, 100, 999));
+    });
+  });
+
+  console.table(t)
+}
 
 
