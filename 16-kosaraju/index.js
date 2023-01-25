@@ -37,8 +37,6 @@ const graphToData = g => {
 
 }
 
-console.log(graphToData(graph));
-
 function dfs(graph, node, visited, stack) {
   visited[node] = true;
 
@@ -92,12 +90,9 @@ function kosaraju(graph) {
       findSSC(node, reversedGraph, visited, scc);
       sscs.push(scc);
     }
-
-
   }
 
-  console.log(stack)
-  console.log(sscs);
+  return sscs;
 }
 
 
@@ -113,9 +108,9 @@ function reverseGraph(g) {
   }, {});
 }
 
-// console.log(reverseGraph(graph))
-
 kosaraju(graph)
+
+// Отрисовка в браузере, в задание не входит, просто чтобы посмотреть как выглядят графы визуально
 
 const gData = graphToData(graph);
 const gData2 = graphToData(reverseGraph(graph));
